@@ -2,10 +2,12 @@ import java.util.ArrayList;
 //Годовой отчёт
 public class YearlyReport {
     private String fileName;
+    // Тут тоже нужна переменная, в которой будет храниться годовой отчет.
     void getYearReport() {
         FileReader fileReader = new FileReader();
         fileName = "y.2021.csv";
         ArrayList<String> lines = fileReader.readFileContents(fileName);
+        // переменную months лучше вынести из метода
         ArrayList<YearData> year = new ArrayList<>();
         for (int k = 1; k < lines.size(); k++) {
             String[] lineContents = lines.get(k).split(",");

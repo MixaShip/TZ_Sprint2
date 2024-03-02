@@ -16,4 +16,7 @@ public class YearData {
     public Boolean getIsExpense() {
         return isExpense;
     }
+
+    // вот тут тоже лучше переопределить метод toString()
+    // public String toString()...
 }
