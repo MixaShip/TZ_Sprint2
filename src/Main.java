@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         MonthlyReport monthlyReport = new MonthlyReport();
+        YearlyReport yearlyReport = new YearlyReport();
         Scanner scanner = new Scanner(System.in);
 
-        MonthData Month = new MonthData();
 
         while (true) {
             printMenu();
@@ -14,22 +14,8 @@ public class Main {
 
             if (command == 1) {
                 monthlyReport.getMonthReport();
-
-                }
-
-                /*ArrayList<String> lines = fileReader.readFileContents(fileName);
-                System.out.println(lines);
-                System.out.println(lines.get(0));
-                String[] lineContents = lines.get(0).split(",");
-                System.out.println(lineContents[0]);
-                System.out.println(lineContents[1]);
-                System.out.println(lineContents[2]);
-                System.out.println(lineContents[3]);*/
-
             } else if (command == 2) {
-                System.out.println("Введите название файла годового отчета");
-                String fileName = scanner.nextLine();
-                ArrayList<String> lines = fileReader.readFileContents(fileName);
+                yearlyReport.getYearReport();
             } /*else if (command == 3) {
 
             } else if (command == 4) {
