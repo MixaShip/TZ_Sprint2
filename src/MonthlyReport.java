@@ -1,25 +1,53 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 //Считывание месячных отчётов
 public class MonthlyReport {
     private String fileName;
+    public HashMap<Integer, ArrayList<MonthData>> months = new HashMap<>();
+    public ArrayList<MonthData> month;
+    public HashMap<Integer,Integer> sumMonths = new HashMap<>();
 
     void getMonthReport() {
-        FileReader fileReader = new FileReader();
         for (int i = 1; i <= 3; i++) {
+            FileReader fileReader = new FileReader();
             fileName = "m.20210" + i + ".csv";
             ArrayList<String> lines = fileReader.readFileContents(fileName);
-            ArrayList<MonthData> months = new ArrayList<>();
-            for (int k = 1; k < lines.size(); k++) {
-                String[] lineContents = lines.get(k).split(",");
-                MonthData data = new MonthData(lineContents[0],
-                        Boolean.parseBoolean(lineContents[1]),
-                        Integer.parseInt(lineContents[2]),
-                        Integer.parseInt((lineContents[3])));
-                // Записываем в список
-                months.add(data);
+            month = new ArrayList<>();
+            for (int j = 1; j < lines.size(); j++) {
+                String[] splitText = lines.get(j).split(",");
+                MonthData data = new MonthData(splitText[0],
+                        Boolean.parseBoolean(splitText[1]),
+                        Integer.parseInt(splitText[2]),
+                        Integer.parseInt(splitText[3]));
 
+                month.add(data);
             }
+
+            // Записываем в хеш - список
+            months.put(i, month);
             System.out.println(months);
         }
+        transformMonthReport(months);
+    }
+
+    public void transformMonthReport(HashMap<Integer, ArrayList<MonthData>> months) {
+
+        for (int i = 1; i <= months.size(); i++){
+            int sumTrue = 0;
+            int sumFalse = 0;
+            for(int j = 0; j < months.get(i).size(); j++){
+                if(months.get(i).get(j).getExpense()){
+                    sumTrue += months.get(i).get(j).getQuantity()*
+                               months.get(i).get(j).getUnitPrice();
+
+                } else {
+                    sumFalse += months.get(i).get(j).getQuantity()*
+                                months.get(i).get(j).getUnitPrice();
+                }
+            }
+            sumMonths.put(-i, sumTrue);
+            sumMonths.put(i, sumFalse);
+        }
+        System.out.println(sumMonths);
     }
 }

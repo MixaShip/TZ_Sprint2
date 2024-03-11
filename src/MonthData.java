@@ -1,8 +1,8 @@
 public class MonthData {
-    private String itemName;
-    private Boolean isExpense;
-    private int quantity;
-    private int unitPrice;
+    private final String itemName;
+    private final Boolean isExpense;
+    private final int quantity;
+    private final int unitPrice;
     public MonthData (String itemName, Boolean isExpense, int quantity, int unitPrice) {
         this.itemName = itemName;
         this.isExpense = isExpense;
@@ -20,5 +20,10 @@ public class MonthData {
     }
     public int getUnitPrice() {
         return unitPrice;
+    }
+
+    @Override
+    public String toString() {
+        return this.itemName + ";" + this.isExpense + ";" + this.quantity + ";" + this.unitPrice;
     }
 }

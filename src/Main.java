@@ -5,23 +5,33 @@ public class Main {
     public static void main(String[] args) {
         MonthlyReport monthlyReport = new MonthlyReport();
         YearlyReport yearlyReport = new YearlyReport();
+        HelpClass helpClass = new HelpClass();
+        PrintMonths printMonths =new PrintMonths();
+        PrintYears printYears = new PrintYears();
         Scanner scanner = new Scanner(System.in);
 
 
         while (true) {
             printMenu();
+
             int command = scanner.nextInt();
 
             if (command == 1) {
                 monthlyReport.getMonthReport();
+                System.out.println("Месячные отчеты успешно считаны");
             } else if (command == 2) {
                 yearlyReport.getYearReport();
-            } /*else if (command == 3) {
-
-            } else if (command == 4) {
-
-            } */else {
+                System.out.println("Годовой отчет успешно считан");
+            } else if (command == 3) {
+                helpClass.checkReport (monthlyReport.months, yearlyReport.years);
+                helpClass.getSumMonths (monthlyReport.sumMonths, yearlyReport.years);
+            }else if (command == 4) {
+                printMonths.printMonthStatistic(monthlyReport.months);
+            } else if (command == 5) {
+                printYears.printYearStatistic(yearlyReport.years);
+            } else {
                 System.out.println("Извините, такой команды пока нет.");
+
             }
         }
     }
