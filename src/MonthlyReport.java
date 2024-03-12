@@ -2,15 +2,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 //Считывание месячных отчётов
 public class MonthlyReport {
-    private String fileName;
-    public HashMap<Integer, ArrayList<MonthData>> months = new HashMap<>();
+  public HashMap<Integer, ArrayList<MonthData>> months = new HashMap<>();
     public ArrayList<MonthData> month;
     public HashMap<Integer,Integer> sumMonths = new HashMap<>();
 
     void getMonthReport() {
         for (int i = 1; i <= 3; i++) {
             FileReader fileReader = new FileReader();
-            fileName = "m.20210" + i + ".csv";
+          String fileName = "m.20210" + i + ".csv";
             ArrayList<String> lines = fileReader.readFileContents(fileName);
             month = new ArrayList<>();
             for (int j = 1; j < lines.size(); j++) {
@@ -25,9 +24,10 @@ public class MonthlyReport {
 
             // Записываем в хеш - список
             months.put(i, month);
-            System.out.println(months);
+//            System.out.println(months);
         }
         transformMonthReport(months);
+        System.out.println("Месячные отчеты успешно считаны");
     }
 
     public void transformMonthReport(HashMap<Integer, ArrayList<MonthData>> months) {
@@ -48,6 +48,6 @@ public class MonthlyReport {
             sumMonths.put(-i, sumTrue);
             sumMonths.put(i, sumFalse);
         }
-        System.out.println(sumMonths);
+//        System.out.println(sumMonths);
     }
 }

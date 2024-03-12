@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,13 +17,16 @@ public class Main {
 
             if (command == 1) {
                 monthlyReport.getMonthReport();
-                System.out.println("Месячные отчеты успешно считаны");
+//                System.out.println("Месячные отчеты успешно считаны");
+//                Если вдруг файлы с отчетами не будут найдены, то все равно выдается - "Месячные отчеты успешно считаны"
             } else if (command == 2) {
                 yearlyReport.getYearReport();
-                System.out.println("Годовой отчет успешно считан");
             } else if (command == 3) {
-                helpClass.checkReport (monthlyReport.months, yearlyReport.years);
-                helpClass.getSumMonths (monthlyReport.sumMonths, yearlyReport.years);
+//                Проверка должна проводиться только после того как все отчеты были считаны
+//                Сейчас helpClass.checkReport возвращает true/false и это можно использовать как условие для if
+                if (helpClass.checkReport(monthlyReport.months, yearlyReport.years)) {
+                    helpClass.getSumMonths(monthlyReport.sumMonths, yearlyReport.years);
+                }
             }else if (command == 4) {
                 printMonths.printMonthStatistic(monthlyReport.months);
             } else if (command == 5) {

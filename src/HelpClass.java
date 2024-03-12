@@ -2,13 +2,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HelpClass {
-    void checkReport (HashMap<Integer, ArrayList<MonthData>> monthsReport,
+    boolean checkReport (HashMap<Integer, ArrayList<MonthData>> monthsReport,
                              HashMap<Integer, YearData> yearsReport) {
         // проверка отчетов на считывание из файлов
-        if(monthsReport.isEmpty() || yearsReport.isEmpty()){
+        if (monthsReport.isEmpty() || yearsReport.isEmpty()){
             System.out.println("Считайте отчеты перед началом сверки.");
-            return;
+            return false;
         }
+        return true;
     }
     public void getSumMonths (HashMap<Integer,Integer> sumMonths,
                                  HashMap<Integer, YearData> yearReport) {
